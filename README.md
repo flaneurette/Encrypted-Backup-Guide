@@ -44,7 +44,7 @@ This prevents:
 - Compromised Veracrypt instance/update
 - Compromised GPG instance/update
 - Code needs to be injected in both software (very unlikley)
-- Code needs to have simultaneous zerodays (very unlikely)
+- Software needs to have simultaneous zerodays (very unlikely)
 
 Dual diceware passwords is the cherry on the cake. If long, it would indicate >= 20 words. 
 
