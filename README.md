@@ -78,9 +78,9 @@ Dual diceware passphrases are the cherry on the cake. If long, >= 20 words is re
 ### Security Model
 
 ```
-cold-storage.vc.gpg        ← what sits on cold storage / cloud
-  └── cold-storage.vc      ← after GPG decryption
-        └── /mnt/vault     ← after VeraCrypt mount
+cold-storage.vc.gpg        - what sits on cold storage / cloud
+  └── cold-storage.vc      - after GPG decryption
+        └── /mnt/vault     - after VeraCrypt mount
               └── your files
 ```
 
