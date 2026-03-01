@@ -124,19 +124,14 @@ echo "this is a test.txt" > test.txt
 cd ~
 veracrypt --text --dismount /mnt/vault
 ```
-
 Then:
-
 ```
 veracrypt --list
 ```
-
 If nothing mounted, then to be sure:
-
 ```
 sudo rm -rf /mnt/vault
 ```
-
 > Always dismount immediately after use. Do not leave the container mounted unattended.
 
 ---
@@ -192,6 +187,15 @@ Step 4 - Dismount
 ```
 veracrypt --text --dismount /mnt/vault
 ```
+Then:
+```
+veracrypt --list
+```
+If nothing mounted, then to be sure:
+```
+sudo rm -rf /mnt/vault
+```
+> Always dismount immediately after use. Do not leave the container mounted unattended.
 
 Step 5 - Securely delete the decrypted container
 
