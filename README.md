@@ -108,6 +108,7 @@ veracrypt --text \
 
 ```
 # Create space
+cd ~
 sudo mkdir /mnt/vault
 
 # Mount
@@ -120,6 +121,7 @@ cd /mnt/vault
 echo "this is a test.txt" > test.txt
 
 # Unmount when done
+cd ~
 veracrypt --text --dismount /mnt/vault
 ```
 
