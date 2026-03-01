@@ -85,6 +85,20 @@ Neither passphrase is ever written near the other. Neither tool shares code with
 
 ---
 
+### Choose filesystem
+
+Alternative `ext4`. You could use this one for linux. The default in the examples is FAT/exFAT (>4GB) for Windows. It is wise to think about this first.
+
+```
+veracrypt --text \
+  --create cold-storage.vc \
+  --encryption AES \
+  --hash SHA-512 \
+  --filesystem ext4 \
+  --pim 1000 \
+  --size 500M
+```
+
 ### Create VeraCrypt Container
 
 ```
