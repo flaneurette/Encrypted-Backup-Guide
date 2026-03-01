@@ -46,14 +46,11 @@ This prevents:
 - Both code needs to be injected in both software (very unlikley)
 - Both code needs to have simultaneous zerodays (very unlikely)
 
-- A compromised VeraCrypt update can't read through GPG
-- A compromised GPG update can't read through VeraCrypt
-- An attacker would need to simultaneously compromise both projects' build pipelines
-- Two independent open source projects with different maintainers, different infrastructure, different release processes.
-
 Dual diceware passwords is the cherry on the cake. If long, it would indicate >= 20 words. 
 
 20 words gives ~257 bits of entropy. Good luck!
+
+257 is very strong, because if some future mathematical breakthrough reduced entropy estimates dramatically, 257 bits has enormous margin to absorb that.
 
 ---
 
