@@ -18,6 +18,8 @@ TIP: If possible, boot up a `HyperV` virtual image without network-adapter, as e
 
 ### Every 6 months
 
+Take a weekend and re-run this readme, and then also:
+
 ```
 | Item                   | Action                                         |
 |------------------------|------------------------------------------------|
