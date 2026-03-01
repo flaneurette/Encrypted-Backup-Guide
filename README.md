@@ -16,7 +16,7 @@ Then proceed below:
 
 ### Precautions
 
-TIP: If possible, boot up a `HyperV` virtual image without network-adapter, as encryption workspace. And proceed all encryption in that VM instance. This prevents existing hidden spyware, ISP snapshots, malware, loggers, rats from spying on your encryption practice. You might not have them, but it is better to `assume they already exist`.
+TIP: If possible, boot up a `HyperV` Ubuntu virtual image without network-adapter, as our encryption workspace. And proceed all encryption in that VM instance. This prevents existing hidden spyware, ISP snapshots, malware, loggers, rats from spying on your encryption practice. You might not have them, but it is better to `assume they already exist`.
 
 ### Every 6 months
 
