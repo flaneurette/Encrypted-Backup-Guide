@@ -1,5 +1,7 @@
 # Encrypted Backup Guide
 
+> TIP: Store this readme next to the encrypted backup. In case your forget what you did. No security through obscurity.
+
 ### Required
 
 - GPG
