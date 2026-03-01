@@ -8,7 +8,7 @@
 - Veracrypt
 - HyperV or similar VM container with Linux Ubuntu. (disable network adapter)
 - Diceware; https://www.eff.org/dice
-- Would recommend a good (alternative) wordlist to increase maxmimum entropy.
+- Would recommend a good (alternative) wordlist to increase maximum entropy.
 
 Each 6 months, assume your all your current credentials are compromised. (mark your calendar each 6 months)
 
