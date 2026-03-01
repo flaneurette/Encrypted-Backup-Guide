@@ -101,6 +101,8 @@ veracrypt --text \
 
 ### Create VeraCrypt Container
 
+Using `FAT` < 4GB container:
+
 ```
 veracrypt --text \
   --create cold-storage.vc \
