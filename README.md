@@ -1,94 +1,115 @@
 # Encrypted Backup Guide
 
-> TIP: Store this readme next to the encrypted backup. In case your forget what you did. No security through obscurity.
+> TIP: Store this readme next to the encrypted backup in case you forget what you did. No security through obscurity.
+
+---
 
 ### Required
 
 - GPG
-- Veracrypt
-- HyperV or similar VM container with Linux Ubuntu. (disable network adapter)
-- Diceware; https://www.eff.org/dice
-- Would recommend a good (alternative) diceware wordlist to increase maximum entropy.
+- VeraCrypt
+- Hyper-V or similar VM with Linux Ubuntu (disable network adapter after setup)
+- Diceware: https://www.eff.org/dice
+- Recommended: alternative or extended diceware wordlist to increase maximum entropy
 
-### Assume, rotate, move on.
-Each 6 months, assume your all your current credentials are compromised. (mark your calendar each 6 months) No need to scour the Internet/darkweb to look for compromised accounts, simply accept and assume that they are. Besides, checking for compromised accounts on services can lead to `oracular escalation`: you now query databases or websites that can fingerprint you, or leave tracks everywhere in server logs, correlating your browser/TLS stack + JA3 hash + IP to your account details + email-address. Don't escalate. Sometimes the most secure action is no action. Assume, rotate, move on. Leave no trace of the process itself. Panic leads to very bad security practices.
+---
 
-Then proceed below:
+### Mindset: Assume, Rotate, Move On
+
+Each 6 months, assume all your current credentials are compromised. Mark your calendar.
+
+No need to scour the internet or dark web checking for compromised accounts - simply accept and assume that they are. Checking for compromised accounts on external services leads to `oracular escalation`: you query databases or websites that fingerprint you, correlating your browser/TLS stack + JA3 hash + IP to your account details and email address. These services could be honeypots run by agencies or criminals. Fake breach notification services are trivially easy to set up, rank highly in search, and harvest exactly the data you came to protect.
+
+Don't escalate. Sometimes the most secure action is no action. Assume, rotate, move on. Leave no trace of the process itself.
+
+> WARNING: Panic leads to very bad security decisions. Breach notifications are designed to trigger an emotional response - "MY credentials are exposed" - which bypasses critical thinking. Attackers exploit this deliberately. A calm, scheduled rotation is more secure than any reactive response. Your credentials are not your identity. They are temporary tokens on a rotation schedule. Nothing to panic about.
+
+---
 
 ### Precautions
 
-TIP: If possible, boot up a `HyperV` Ubuntu virtual image without network-adapter, as our encryption workspace. And proceed all encryption in that VM instance. This prevents existing hidden spyware, ISP snapshots, malware, loggers, rats from spying on your encryption practice. You might not have them, but it is better to `assume they already exist`.
+If possible, boot a Hyper-V Ubuntu virtual image without a network adapter as your encryption workspace. Perform all encryption operations inside that VM. This prevents existing spyware, ISP monitoring, malware, keyloggers, and RATs from observing your encryption practice. You might not have them - but it is better to assume they already exist.
 
-### Every 6 months
+One-time network window: You need internet briefly to download VeraCrypt and GPG. Enable the network adapter, download, verify hashes, then remove the adapter permanently. Total window: under 10 minutes. The VM never needs internet again.
 
-Take a weekend and re-run this readme, and then also:
+---
 
-```
-| Item                   | Action                                         |
-|------------------------|------------------------------------------------|
-| All passwords          | Rotate entirely                                |
-| Diceware passphrases   | Generate fresh ones                            |
-| SSH keys               | Regenerate                                     |
-| API keys               | Revoke and reissue                             |
-| GPG keys               | Consider rotation                              |
-| VeraCrypt containers   | Re-encrypt with new passphrase                 |
-| Cold storage           | New container, new GPG wrap, new passphrases   |
-| 2FA seeds              | Audit which services have it enabled           |
-| Passsword manager      | Consider rotating                              |
-```
+### Every 6 Months
+
+Take a weekend and re-run this guide, then rotate everything:
+
+| Item                  | Action                                        |
+|-----------------------|-----------------------------------------------|
+| All passwords         | Rotate entirely                               |
+| Diceware passphrases  | Generate fresh ones                           |
+| SSH keys              | Regenerate                                    |
+| API keys              | Revoke and reissue                            |
+| GPG keys              | Consider rotation                             |
+| VeraCrypt containers  | Re-encrypt with new passphrase                |
+| Cold storage          | New container, new GPG wrap, new passphrases  |
+| 2FA seeds             | Audit which services have it enabled          |
+| Password manager      | Consider rotating master passphrase           |
+
+---
 
 ### Overview
 
-This guide documents a two-layer encryption strategy for secure cold storage backups.
-The VeraCrypt container holds sensitive files. GPG wraps the container as an independent
-outer layer. Both must be broken simultaneously for data to be exposed - using different
-tools, different algorithms, and different (diceware) passphrases.
+This guide documents a two-layer encryption strategy for secure cold storage backups. The VeraCrypt container holds sensitive files. GPG wraps the container as an independent outer layer. Both must be broken simultaneously for data to be exposed - using different tools, different algorithms, and different diceware passphrases.
 
 This prevents:
 
 - Supply chain / MITM compromise
-- Compromised Veracrypt instance/update
-- Compromised GPG instance/update
-- Code needs to be injected in both software (very unlikley)
-- Software needs to have simultaneous zerodays (very unlikely)
-- XZ-style social engineering
-- Fresh weakness found in one software package. (the other buffers it)
-- Post-quantum `store now, decrypt later` practices. (already happening)
+- Compromised VeraCrypt instance or update
+- Compromised GPG instance or update
+- Code injection requires both software simultaneously (very unlikely)
+- Both software requires simultaneous zerodays (very unlikely)
+- XZ-style social engineering attacks
+- Fresh weakness in one package - the other buffers it
+- Post-quantum `store now, decrypt later` practices (already happening)
 
-Dual diceware passwords is the cherry on the cake. If long, it would indicate >= 20 words. 
+Dual diceware passphrases are the cherry on the cake. If long, >= 20 words is recommended.
 
-20 words gives ~257 bits of entropy. Good luck!
+20 words gives ~257 bits of entropy - comparable to counting every atom in the observable universe. If some future mathematical breakthrough reduced entropy estimates dramatically, 257 bits has enormous margin to absorb that. This also defeats post-quantum attacks: Grover's algorithm halves effective bits, leaving ~128 bits - still unbreakable.
 
-257 bits is very strong, because if some future mathematical breakthrough reduced entropy estimates dramatically, 257 bits has enormous margin to absorb that.
-
-> NOTE: precautions are good, because 15 years ago, it was acceptable to use a 12 char password. Today that advise is laughable. 
+> NOTE: Precautions are good. 15 years ago a 12-character password was considered secure. Today that advice is laughable. What is laughable in 2040 is being decided by choices made today.
 
 ---
 
 ### Security Model
 
 ```
-cold-storage.vc.gpg        - what sits on cold storage / cloud
-  └── cold-storage.vc      - after GPG decryption
-        └── /mnt/vault     - after VeraCrypt mount
+cold-storage.vc.gpg        ← what sits on cold storage / cloud
+  └── cold-storage.vc      ← after GPG decryption
+        └── /mnt/vault     ← after VeraCrypt mount
               └── your files
 ```
 
-```
-| Layer | Tool       | Algorithm             | Passphrase            |
-|-------|------------|-----------------------|-----------------------|
-| Outer | GPG        | AES-256 + SHA-512 KDF | Diceware passphrase A |
-| Inner | VeraCrypt  | AES                   | Diceware passphrase B |
-```
+| Layer | Tool      | Algorithm             | Passphrase            |
+|-------|-----------|-----------------------|-----------------------|
+| Outer | GPG       | AES-256 + SHA-512 KDF | Diceware passphrase A |
+| Inner | VeraCrypt | AES + PIM 1000        | Diceware passphrase B |
 
 Neither passphrase is ever written near the other. Neither tool shares code with the other.
 
 ---
 
-### Choose filesystem
+### Choose Filesystem
 
-Alternative `ext4`. You could use this one for linux. The default in the examples is FAT/exFAT (>4GB) for Windows. It is wise to think about this first.
+Think about this before creating your container.
 
+| Filesystem | Use case                    | Notes                                              |
+|------------|-----------------------------|----------------------------------------------------|
+| FAT        | Cross-platform, files < 4GB | Requires `--fs-options="iocharset=utf8"` on mount  |
+| exFAT      | Cross-platform, files > 4GB | Better FAT alternative                             |
+| ext4       | Linux only                  | Native UTF-8, permissions, no file size limit      |
+
+If your vault lives entirely in Linux - use ext4. No charset issues, no file size limits.
+
+---
+
+### Create VeraCrypt Container
+
+ext4 (Linux only, recommended):
 ```
 veracrypt --text \
   --create cold-storage.vc \
@@ -99,10 +120,7 @@ veracrypt --text \
   --size 500M
 ```
 
-### Create VeraCrypt Container
-
-Using `FAT` < 4GB container:
-
+FAT (cross-platform, files < 4GB):
 ```
 veracrypt --text \
   --create cold-storage.vc \
@@ -113,43 +131,45 @@ veracrypt --text \
   --size 500M
 ```
 
-> `--pim 1000` significantly increases key derivation iterations. Cold storage is opened
-> rarely, so the slower unlock time is an acceptable trade-off for much stronger brute-force
-> resistance. VeraCrypt will prompt securely for the passphrase - do not pass it as an
-> argument.
+> `--pim 1000` significantly increases key derivation iterations. Cold storage is opened rarely, so the slower unlock time is an acceptable trade-off for much stronger brute-force resistance. VeraCrypt will prompt securely for the passphrase - never pass it as a command-line argument.
 
 ---
 
 ### Mount and Unmount
 
 ```
-# Create space
+# Create mount point (once per fresh install)
 cd ~
 sudo mkdir /mnt/vault
 
-# Mount
+# Mount (ext4)
+veracrypt --text \
+  --mount cold-storage.vc /mnt/vault \
+  --pim 1000
+
+# Mount (FAT - requires charset flag)
 veracrypt --text \
   --mount cold-storage.vc /mnt/vault \
   --pim 1000 \
   --fs-options="iocharset=utf8"
 
-# Create test file
+# Test
 cd /mnt/vault
-echo "this is a test.txt" > test.txt
+echo "this is a test" > test.txt
+cat test.txt
 
-# Unmount when done
+# Unmount - must cd out first
 cd ~
 veracrypt --text --dismount /mnt/vault
-```
-Then:
-```
+
+# Verify fully unmounted
 veracrypt --list
-```
-If nothing mounted, then to be sure:
-```
+
+# Remove mount point
 sudo rm -rf /mnt/vault
 ```
-> Always dismount immediately after use. Do not leave the container mounted unattended.
+
+> Always dismount immediately after use. You cannot dismount while your terminal is inside the vault directory - always `cd ~` first.
 
 ---
 
@@ -164,87 +184,91 @@ gpg --symmetric \
   cold-storage.vc
 ```
 
-This produces `cold-storage.vc.gpg`. The original `cold-storage.vc` can be deleted
-after verifying the GPG file decrypts correctly.
+This produces `cold-storage.vc.gpg`. Verify before deleting the original:
 
-> `--s2k-count 65011712` sets key derivation to maximum iterations. Combined with
-> VeraCrypt's high PIM, brute-forcing either layer becomes computationally infeasible
-> with current and foreseeable hardware.
+```
+# Test decrypt - verify integrity without saving output
+gpg --decrypt cold-storage.vc.gpg > /dev/null
+```
+
+If no errors - GPG wrap is good. Then securely delete the original:
+
+```
+shred -u cold-storage.vc
+```
+
+> `--s2k-count 65011712` sets key derivation to maximum iterations. Combined with VeraCrypt's PIM 1000, brute-forcing either layer becomes computationally infeasible with current and foreseeable hardware including quantum computers.
+
+> NOTE: GPG caches your passphrase in the GPG agent during the current session. On a fresh system it will always prompt. Your cold storage is properly protected - the cache is session-only and dies when the VM shuts down.
 
 ---
 
 ### Emergency Restore Sequence
 
 Step 1 - Decrypt GPG outer layer
-
 ```
 gpg --output cold-storage.vc \
     --decrypt cold-storage.vc.gpg
 ```
 
-Step 2 - Mount VeraCrypt inner container
-
+Step 2 - Create mount point and mount VeraCrypt
 ```
 cd ~
 sudo mkdir /mnt/vault
 
 veracrypt --text \
   --mount cold-storage.vc /mnt/vault \
-  --pim 1000 \
-  --fs-options="iocharset=utf8"
+  --pim 1000
 ```
 
 Step 3 - Copy files out
-
 ```
 cp -r /mnt/vault/* /destination/
 ```
 
-Step 4 - Dismount
-
+Step 4 - Dismount and clean up
 ```
+cd ~
 veracrypt --text --dismount /mnt/vault
-```
-Then:
-```
 veracrypt --list
-```
-If nothing mounted, then to be sure:
-```
 sudo rm -rf /mnt/vault
 ```
-> Always dismount immediately after use. Do not leave the container mounted unattended.
 
-Step 5 - Securely delete the decrypted container
-
+Step 5 - Securely delete decrypted container
 ```
 shred -u cold-storage.vc
 ```
 
-> Step 5 is critical. The decrypted `.vc` file sitting on disk after restoration
-> is a liability. Shred it immediately once files are safely copied.
+> Step 5 is critical. The decrypted `.vc` file sitting on disk after restoration is a liability. Shred it immediately once files are safely copied out.
 
 ---
 
 ### Passphrase Notes
 
-- Both passphrases should be generated with Diceware (6 words minimum, 10 words recomended)
+- Generate both passphrases with Diceware (6 words minimum, 20 words recommended)
 - Never store both passphrases in the same location
 - Never pass passphrases as command-line arguments - let tools prompt interactively
-- Passphrases stored in different physical locations (e.g. one memorised, one in a sealed envelope offsite)
+- Store passphrases in different physical locations - e.g. one memorised, one in a sealed envelope offsite
+- Rotate both passphrases every 6 months with new containers
 
 ---
 
 ### Backup Storage - 3-2-1 Rule
 
-| # | Location                  | Media                                |
-|---|---------------------------|--------------------------------------|
-| 1 | Local (e.g. external SSD) | SSD or USB                           |
-| 2 | Second local device       | Different media type                 |
-| 3 | Offsite                   | Trusted location or encrypted cloud  |
+| # | Location                  | Media                               |
+|---|---------------------------|-------------------------------------|
+| 1 | Local (e.g. external SSD) | SSD or USB                          |
+| 2 | Second local device       | Different media type                |
+| 3 | Offsite                   | Trusted location or encrypted cloud |
 
-Test restores periodically. A backup never tested is not a backup
+Test restores periodically. A backup never tested is not a backup.
 
-> Pro-tip: Software Escrow. Store a copy of both GPG and Veracrypt software seperately together with known hashes. If a package does get compromised on the maintainer, you can fall back on the older uncompromised copy. But first always check and compare.
+---
 
-> Pro-tip 2: if paranoid, build both software from source. Although, this could introduce new angles of attack as you have to download many additional packages that could contain risks such as unvetted code. Only do this if you understand the risks. Its better to run a build, and then let it sit in a isolated vm container for a few days, and log internet traffic to see calls. (expert mode)
+### Pro-Tips
+
+> Pro-tip 1 - Software Escrow: Store a copy of both GPG and VeraCrypt installers separately together with their known hashes. If a package gets compromised at the maintainer level, you can fall back on the older uncompromised copy. Always check and compare hashes before use. Verify against multiple independent sources - official website, GitHub releases, and your stored hash should all match. Store these copies on your cold storage media alongside your encrypted containers.
+
+> Pro-tip 2 - Source builds: If paranoid, build both tools from source. However this introduces new attack angles - you must download many additional packages and build dependencies, each a potential risk. Only do this if you understand the full dependency chain. A safer middle ground: build from source, then run the binary in an isolated VM for several days and monitor all network traffic. VeraCrypt and GPG should produce zero network connections - any outbound traffic is suspicious. (Expert mode only.)
+
+> Pro-tip 3 - Post-compromise buffer: If a fresh vulnerability is discovered in one package, the other layer buffers it completely. Combined with your software escrow copies, you can fall back to a known-good version and re-encrypt at the next rotation cycle - without ever being exposed. If encryption already happened before the vulnerability was discovered, existing containers are unaffected entirely.
