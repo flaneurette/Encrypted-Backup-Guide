@@ -76,7 +76,7 @@ Dual diceware passphrases are the cherry on the cake. If long, >= 20 words is re
 
 > NOTE: Precautions are good. 15 years ago a 12-character password was considered secure. Today that advice is laughable. What is laughable in 2040 is being decided by choices made today.
 
----
+--- 
 
 ### Security Model
 
