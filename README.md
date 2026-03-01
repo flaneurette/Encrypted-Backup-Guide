@@ -6,8 +6,8 @@
 
 ### Required
 
-- GPG
-- VeraCrypt
+- [GPG] (https://www.gnupg.org/)
+- [VeraCrypt] (https://veracrypt.jp/)
 - Hyper-V or similar VM with Linux Ubuntu (disable network adapter after setup)
 - Diceware: https://www.eff.org/dice
 - Recommended: alternative or extended diceware wordlist to increase maximum entropy
