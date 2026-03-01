@@ -47,6 +47,7 @@ This prevents:
 - Compromised GPG instance/update
 - Code needs to be injected in both software (very unlikley)
 - Software needs to have simultaneous zerodays (very unlikely)
+- XZ-style social engineering
 
 Dual diceware passwords is the cherry on the cake. If long, it would indicate >= 20 words. 
 
