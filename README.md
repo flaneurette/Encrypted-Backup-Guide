@@ -10,6 +10,7 @@
 - Diceware; https://www.eff.org/dice
 - Would recommend a good (alternative) diceware wordlist to increase maximum entropy.
 
+### Stay calm and prevail
 Each 6 months, assume your all your current credentials are compromised. (mark your calendar each 6 months) No need to scour the Internet/darkweb to look for compromised accounts, simply accept and assume that they are. Besides, checking for compromised accounts on services can lead to `oracular escalation`: you now query databases or websites that can fingerprint you, or leave tracks everywhere in server logs, correlating your browser/TLS stack + JA3 hash + IP to your account details + email-address. Don't escalate. Sometimes the most secure action is no action. Assume, rotate, move on. Leave no trace of the process itself. Panic leads to very bad security practices.
 
 Then proceed below:
