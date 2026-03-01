@@ -6,7 +6,7 @@
 
 - GPG
 - Veracrypt
-- HyperV
+- HyperV or similar VM container.
 
 Each 6 months, assume your all your current credentials are compromised. (mark your calendar each 6 months)
 
