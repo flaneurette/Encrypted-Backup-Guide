@@ -114,7 +114,7 @@ sudo mkdir /mnt/vault
 # Mount
 veracrypt --text \
   --mount cold-storage.vc /mnt/vault \
-  --pim 1000
+  --pim 1000 --fs-options="iocharset=utf8"
 
 # Create test file
 cd /mnt/vault
@@ -173,7 +173,7 @@ sudo mkdir /mnt/vault
 
 veracrypt --text \
   --mount cold-storage.vc /mnt/vault \
-  --pim 1000
+  --pim 1000 --fs-options="iocharset=utf8"
 ```
 
 Step 3 - Copy files out
