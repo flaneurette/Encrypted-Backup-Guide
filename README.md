@@ -43,14 +43,16 @@ This prevents:
 - Supply chain / MITM compromise
 - Compromised Veracrypt instance/update
 - Compromised GPG instance/update
-- Both code needs to be injected in both software (very unlikley)
-- Both code needs to have simultaneous zerodays (very unlikely)
+- Code needs to be injected in both software (very unlikley)
+- Code needs to have simultaneous zerodays (very unlikely)
 
 Dual diceware passwords is the cherry on the cake. If long, it would indicate >= 20 words. 
 
 20 words gives ~257 bits of entropy. Good luck!
 
 257 bits is very strong, because if some future mathematical breakthrough reduced entropy estimates dramatically, 257 bits has enormous margin to absorb that.
+
+> NOTE: precautions are good, because 15 years ago, it was acceptable to use a 12 char password. Today that advise is laughable. 
 
 ---
 
