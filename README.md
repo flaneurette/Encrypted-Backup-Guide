@@ -50,7 +50,7 @@ Dual diceware passwords is the cherry on the cake. If long, it would indicate >=
 
 20 words gives ~257 bits of entropy. Good luck!
 
-257 is very strong, because if some future mathematical breakthrough reduced entropy estimates dramatically, 257 bits has enormous margin to absorb that.
+257 bits is very strong, because if some future mathematical breakthrough reduced entropy estimates dramatically, 257 bits has enormous margin to absorb that.
 
 ---
 
