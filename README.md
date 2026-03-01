@@ -31,6 +31,7 @@ Take a weekend and re-run this readme, and then also:
 | VeraCrypt containers   | Re-encrypt with new passphrase                 |
 | Cold storage           | New container, new GPG wrap, new passphrases   |
 | 2FA seeds              | Audit which services have it enabled           |
+| Passsword manager      | Consider rotating                              |
 ```
 
 ### Overview
