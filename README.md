@@ -195,4 +195,4 @@ shred -u cold-storage.vc
 
 Test restores periodically. A backup never tested is not a backup
 
-> Pro-tip: Store a copy of both GPG and Veracrypt software seperately together with known hashes. If a package does get compromised on the maintainer, you can fall back on the older uncompromised copy. But first always check and compare.
+> Pro-tip: Software Escrow. Store a copy of both GPG and Veracrypt software seperately together with known hashes. If a package does get compromised on the maintainer, you can fall back on the older uncompromised copy. But first always check and compare.
