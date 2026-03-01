@@ -107,10 +107,17 @@ veracrypt --text \
 ### Mount and Unmount
 
 ```
+# Create space
+sudo mkdir /mnt/vault
+
 # Mount
 veracrypt --text \
   --mount cold-storage.vc /mnt/vault \
   --pim 1000
+
+# Create test file
+cd /mnt/vault
+echo "this is a test.txt" > test.txt
 
 # Unmount when done
 veracrypt --text --dismount /mnt/vault
