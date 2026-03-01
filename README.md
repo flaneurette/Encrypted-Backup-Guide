@@ -50,6 +50,7 @@ This prevents:
 - Software needs to have simultaneous zerodays (very unlikely)
 - XZ-style social engineering
 - Fresh weakness found in one software package. (the other buffers it)
+- Post-quantum `store now, decrypt later` practices. (already happening)
 
 Dual diceware passwords is the cherry on the cake. If long, it would indicate >= 20 words. 
 
