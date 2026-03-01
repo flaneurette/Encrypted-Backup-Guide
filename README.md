@@ -173,6 +173,9 @@ gpg --output cold-storage.vc \
 Step 2 - Mount VeraCrypt inner container
 
 ```
+cd ~
+sudo mkdir /mnt/vault
+
 veracrypt --text \
   --mount cold-storage.vc /mnt/vault \
   --pim 1000
