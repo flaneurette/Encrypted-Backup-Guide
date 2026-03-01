@@ -15,7 +15,7 @@
 ---
 # Preamble.
 
-Security is tough, but we can make it easier by follwing these steps below.
+Security is tough, but we can make it easier by following these steps below.
 
 ### Mindset: Assume, Rotate, Move On
 
