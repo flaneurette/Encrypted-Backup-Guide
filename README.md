@@ -38,11 +38,11 @@ tools, different algorithms, and different (diceware) passphrases.
 
 This prevents:
 
-- 0) Supply chain compromise
-- 1) Compromised Veracrypt instance/update
-- 2) Compromised GPG instance/update
-- 3) Both code needs to be injected in both software (very unlikley)
-- 4) Both code needs to have simultaneous zerodays (very unlikely)
+- Supply chain / MITM compromise
+- Compromised Veracrypt instance/update
+- Compromised GPG instance/update
+- Both code needs to be injected in both software (very unlikley)
+- Both code needs to have simultaneous zerodays (very unlikely)
 
 - A compromised VeraCrypt update can't read through GPG
 - A compromised GPG update can't read through VeraCrypt
