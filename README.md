@@ -48,6 +48,7 @@ This prevents:
 - Code needs to be injected in both software (very unlikley)
 - Software needs to have simultaneous zerodays (very unlikely)
 - XZ-style social engineering
+- Fresh weakness found in one software package. (the other buffers it)
 
 Dual diceware passwords is the cherry on the cake. If long, it would indicate >= 20 words. 
 
