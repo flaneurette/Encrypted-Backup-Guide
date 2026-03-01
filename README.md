@@ -1,5 +1,11 @@
 # Encrypted Backup Guide
 
+### Required
+
+- GPG
+- Veracrypt
+- HyperV
+
 Each 6 months, assume your all your current credentials are compromised. (mark your calendar each 6 months)
 
 Then proceed below:
@@ -10,6 +16,7 @@ TIP: If possible, boot up a `HyperV` virtual image without network-adapter, as e
 
 ### Every 6 months
 
+```
 | Item                   | Action                                         |
 |------------------------|------------------------------------------------|
 | All passwords          | Rotate entirely                                |
@@ -20,6 +27,7 @@ TIP: If possible, boot up a `HyperV` virtual image without network-adapter, as e
 | VeraCrypt containers   | Re-encrypt with new passphrase                 |
 | Cold storage           | New container, new GPG wrap, new passphrases   |
 | 2FA seeds              | Audit which services have it enabled           |
+```
 
 ### Overview
 
