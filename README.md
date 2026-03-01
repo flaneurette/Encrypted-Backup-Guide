@@ -196,3 +196,5 @@ shred -u cold-storage.vc
 Test restores periodically. A backup never tested is not a backup
 
 > Pro-tip: Software Escrow. Store a copy of both GPG and Veracrypt software seperately together with known hashes. If a package does get compromised on the maintainer, you can fall back on the older uncompromised copy. But first always check and compare.
+
+> Pro-tip 2: if paranoid, build both software from source. Although, this could introduce new angles of attack as you have to download many additional packages that could contain risks such as unvetted code. Only do this if you understand the risks. Its better to run a build, and then let it sit in a isolated vm container for a few days, and log internet traffic to see calls. (expert mode)
