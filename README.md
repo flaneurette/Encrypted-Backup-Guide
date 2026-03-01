@@ -13,6 +13,9 @@
 - Recommended: alternative or extended diceware wordlist to increase maximum entropy
 
 ---
+# Preamble.
+
+Security is tough, but we can make it easier by follwing these steps below.
 
 ### Mindset: Assume, Rotate, Move On
 
